@@ -10,7 +10,8 @@
     "lint": "eslint src",
     "fix": "eslint src --fix",
     "lint:style": "stylelint src/**/*.{css,scss,vue} --cache --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "commitlint": "commitlint --config commitlint.config.cjs -e -V"
   },
   "dependencies": {
     "vue": "^3.3.11"
