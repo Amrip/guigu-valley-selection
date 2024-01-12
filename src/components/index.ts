@@ -3,7 +3,6 @@ import SvgIcon from './SvgIcon/index.vue'
 import Pagination from './Pagination/index.vue'
 // 全局对象
 const allGlobalComponent = {SvgIcon,Pagination};
-
 // 暴露
 export default{
     // 一定要叫做install方法

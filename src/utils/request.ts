@@ -1,5 +1,3 @@
-// 常用工具
-
 // 进行axios的二次封装：使用请求与响应拦截器
 import axios from 'axios'
 import {ElMessage} from "element-plus"

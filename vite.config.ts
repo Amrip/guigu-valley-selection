@@ -27,13 +27,16 @@ export default defineConfig(({command}) => {
       },
     },
   
-    // 引入全局变量
+    // scss全局配置
     css: {
       preprocessorOptions: {
         scss: {
           javascriptEnabled: true,
-          additionalData: '@import "./src/styles/variable.scss";',
-        },
+          additionalData:  `
+            @import "@/styles/variable.scss";
+            @import "@/styles/element.scss"; 
+          `,
+        }
       },
     },  
   }
