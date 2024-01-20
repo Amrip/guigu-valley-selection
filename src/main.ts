@@ -9,7 +9,7 @@ import '@/styles/index.scss'
 import pinia from '@/store/index'
 // 引入路由
 import router from './router'
-
+import '@/router/permission'
 const app = createApp(App)
 // 全局组件
 app.use(globalComponent)

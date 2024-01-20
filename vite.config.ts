@@ -3,11 +3,24 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-
 import { UserConfigExport, ConfigEnv } from 'vite'
 import { viteMockServe } from 'vite-plugin-mock'
-export default defineConfig(({command}) => {
+import { loadEnv } from "vite";
+
+export default defineConfig(({command,mode}) => {
+  let env = loadEnv(mode,process.cwd())
   return{
+    // 代理跨域
+    server:{
+      proxy:{
+        [env.VITE_APP_BASE_API]:{
+          target:env.VITE_SERVE,
+          changeOrigin:true,
+          rewrite:(path)=>path.replace(/^\/api/,''),
+        }
+      }
+    },
+
     plugins: [
       vue(),
       createSvgIconsPlugin({

@@ -80,19 +80,19 @@ const login = async()=>{
 // value:即为表单元素文本内容
 // 函数:如果符合条件callBack放行通过即为
 // 如果不符合条件callBack方法,注入错误提示信息
-const validatorUserName = (rule: any, value: any, callback: any) => {
+const validatorUserName = (_rule: any, value: any, callBack: any) => {
   if (value.length >= 5) {
-    callback();
+    callBack();
   } else {
-    callback(new Error('账号长度至少五位'));
+    callBack(new Error('账号长度至少五位'));
   }
 }
 
-const validatorPassWord = (rule: any, value: any, callback: any) => {
+const validatorPassWord = (_rule: any, value: any, callBack: any) => {
   if (value.length >= 6) {
-    callback();
+    callBack();
   } else {
-    callback(new Error('密码长度至少六位'));
+    callBack(new Error('密码长度至少六位'));
   }
 }
 // 定义表单校验规则
