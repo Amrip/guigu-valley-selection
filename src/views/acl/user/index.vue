@@ -1,13 +1,9 @@
 <template>
-    <div>
-        <h1>用户管理</h1>
-    </div>
+  <div>
+    <h1>用户管理</h1>
+  </div>
 </template>
 
-<script lang="ts">
+<script lang="ts"></script>
 
-</script>
-
-<style scoped>
-
-</style>
+<style scoped></style>

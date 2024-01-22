@@ -44,8 +44,6 @@ import useLayoutStore from "@/store/modules/layout";
 let userStore = useUserStore(); // 获取仓库
 let layoutStore = useLayoutStore();
 let $route = useRoute(); // 获取路由对象
-
-
 </script>
 
 <style scoped lang="scss">

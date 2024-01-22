@@ -1,13 +1,9 @@
 <template>
-    <div>
-        <span>分页器组件</span>
-    </div>
+  <div>
+    <span>分页器组件</span>
+  </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts"></script>
 
-</script>
-
-<style scoped>
-
-</style>
+<style scoped></style>

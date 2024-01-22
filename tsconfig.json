@@ -5,8 +5,8 @@
     "module": "ESNext",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
-    "baseUrl": "./",  //解析非相对模块的基地址,默认当前目录
-    "paths":{"@/*":["src/*"]},  //路径映射，相当于baseUrl
+    "baseUrl": "./", //解析非相对模块的基地址,默认当前目录
+    "paths": { "@/*": ["src/*"] }, //路径映射，相当于baseUrl
 
     /* Bundler mode */
     "moduleResolution": "bundler",

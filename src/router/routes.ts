@@ -21,7 +21,7 @@ export const constantRoutes = [
       show: true,
       icon: "",
     },
-    redirect:'/home',
+    redirect: "/home",
     children: [
       {
         path: "/home",
@@ -87,7 +87,7 @@ export const constantRoutes = [
         name: "User",
         meta: {
           title: "用户管理",
-          show:true,
+          show: true,
           icon: "User",
         },
       },
@@ -97,7 +97,7 @@ export const constantRoutes = [
         name: "Role",
         meta: {
           title: "角色管理",
-          show:true,
+          show: true,
           icon: "UserFilled",
         },
       },
@@ -107,7 +107,7 @@ export const constantRoutes = [
         name: "Permission",
         meta: {
           title: "菜单管理",
-          show:true,
+          show: true,
           icon: "Monitor",
         },
       },
@@ -121,7 +121,7 @@ export const constantRoutes = [
     name: "Product",
     meta: {
       title: "商品管理",
-      show:true,
+      show: true,
       icon: "Goods",
     },
     redirect: "/product/trademark",
@@ -132,7 +132,7 @@ export const constantRoutes = [
         name: "Trademark",
         meta: {
           title: "品牌管理",
-          show:true,
+          show: true,
           icon: "ShoppingCartFull",
         },
       },
@@ -142,7 +142,7 @@ export const constantRoutes = [
         name: "Attr",
         meta: {
           title: "属性管理",
-          show:true,
+          show: true,
           icon: "ChromeFilled",
         },
       },
@@ -152,7 +152,7 @@ export const constantRoutes = [
         name: "Spu",
         meta: {
           title: "SPU管理",
-          show:true,
+          show: true,
           icon: "Calendar",
         },
       },
@@ -162,7 +162,7 @@ export const constantRoutes = [
         name: "Sku",
         meta: {
           title: "SKU管理",
-          show:true,
+          show: true,
           icon: "Orange",
         },
       },

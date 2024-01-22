@@ -133,7 +133,7 @@ const getTrademark = async (pager = 1) => {
   pageNo.value = pager;
   let result: TradeMarkResponseData = await reqGetTrademark(
     pageNo.value,
-    limit.value
+    limit.value,
   );
   if (result.code == 200) {
     total.value = result.data.total;
@@ -172,7 +172,7 @@ const removeTrademark = async (id: number) => {
     });
     //再次获取已有的品牌数据
     getTrademark(
-      trademarkData.value.length > 1 ? pageNo.value : pageNo.value - 1
+      trademarkData.value.length > 1 ? pageNo.value : pageNo.value - 1,
     );
   } else {
     ElMessage({
@@ -218,7 +218,7 @@ const cancel = () => {
 // 图片上传钩子
 const handleAvatarSuccess: UploadProps["onSuccess"] = (
   response,
-  _uploadFile
+  _uploadFile,
 ) => {
   trademarkParams.logoUrl = response.data;
   formRef.value.clearValidate("logoUrl");
