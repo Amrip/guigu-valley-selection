@@ -189,3 +189,70 @@ spuId —— 对应的SPUid
     ],
     "ok": true
 }
+
+
+
+
+添加SKU
+请求链接：
+/admin/product/saveSkuInfo
+http://114.115.179.162:8022/prod-api/admin/product/saveSkuInfo
+请求携带数据：
+{
+    "category3Id": 61,
+    "spuId": 9393,
+    "tmId": 4,
+    "skuName": "asd",
+    "price": "213",
+    "weight": "124",
+    "skuDesc": "asfafasfafas",
+    "skuAttrValueList": [
+        {
+            "attrId": "25634",
+            "valueId": "191187"
+        },
+        {
+            "attrId": "25636",
+            "valueId": "191191"
+        },
+        {
+            "attrId": "25644",
+            "valueId": "191208"
+        },
+        {
+            "attrId": "25646",
+            "valueId": "191210"
+        },
+        {
+            "attrId": "25647",
+            "valueId": "191212"
+        },
+        {
+            "attrId": "25648",
+            "valueId": "191214"
+        },
+        {
+            "attrId": "25650",
+            "valueId": "191216"
+        },
+        {
+            "attrId": "25651",
+            "valueId": "191217"
+        }
+    ],
+    "skuSaleAttrValueList": [
+        {
+            "saleAttrId": "35602",
+            "saleAttrValueId": "21995"
+        },
+        {
+            "saleAttrId": "35603",
+            "saleAttrValueId": "21997"
+        },
+        {
+            "saleAttrId": "35604",
+            "saleAttrValueId": "22001"
+        }
+    ],
+    "skuDefaultImg": ""
+}

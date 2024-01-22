@@ -17,10 +17,14 @@
         <el-table-column label="SPU描述" prop="description"></el-table-column>
         <el-table-column label="SPU操作">
             <template #="{row,$index}">
-                <el-button type="primary" icon="Plus" size="small"></el-button>
-                <el-button type="warning" icon="Edit" size="small" @click="editSpu(row)"></el-button>
-                <el-button type="info" icon="View" size="small"></el-button>
-                <el-button type="danger" icon="Delete" size="small"></el-button>
+                <el-button type="primary" icon="Plus" size="small" title="添加SKU" @click="addSku(row)"></el-button>
+                <el-button type="warning" icon="Edit" size="small" @click="editSpu(row)" title="修改SPU"></el-button>
+                <el-button type="info" icon="View" size="small"  title="查看SKU" @click="getSku(row)"></el-button>
+                <el-popconfirm :title="`你确定删除${row.spuName}?`" width="200px" @confirm="deleteSpu(row)">
+                    <template #reference>
+                        <el-button type="primary" size="small" icon="Delete" title="删除SPU"></el-button>
+                    </template>
+                </el-popconfirm>
             </template>
         </el-table-column>
         </el-table>
@@ -41,6 +45,21 @@
     <spuForm v-show="scene==1" ref="spu" @changeScene="changeScene"/>
     <!-- 场景2：添加SKU -->
     <skuForm v-show="scene==2" ref="sku" @changeScene="changeScene"/>
+
+    <!-- 展示sku列表的el-dialog -->
+    <!-- dialog对话框:展示已有的SKU数据 -->
+    <el-dialog v-model="dialogVisible" title="SKU列表">
+        <el-table border :data="skuList">
+            <el-table-column label="SKU名字" prop="skuName"></el-table-column>
+            <el-table-column label="SKU价格" prop="price"></el-table-column>
+            <el-table-column label="SKU重量" prop="weight"></el-table-column>
+            <el-table-column label="SKU图片">
+                <template #="{ row, $index }">
+                    <img :src="row.skuDefaultImg" style="width: 100px;height: 100px;">
+                </template>
+            </el-table-column>
+        </el-table>
+    </el-dialog>
   </el-card>
 
 </template>
@@ -48,8 +67,8 @@
 <script setup lang="ts">
 import Category from "@/components/Category/index.vue";
 import { onMounted, ref, watch } from "vue";
-import {reqSpuData} from '@/api/product/spu/index'
-import {SpuDataResponse,SpuDataRecord} from '@/api/product/spu/type'
+import {reqDeleteSpu,reqGetSkus,reqSpuData} from '@/api/product/spu/index'
+import {SpuDataResponse,SpuDataRecord, SkuData, SkuDataResponse} from '@/api/product/spu/type'
 import { ElMessage } from "element-plus";
 import useCategoryStore from "@/store/modules/category";
 import spuForm from "./spuForm.vue"
@@ -71,8 +90,13 @@ const changePage=(pager:number)=>{
 }
 // records数据
 let records = ref<SpuDataRecord[]>([])
+// 获取spuForm组件实例
+let spu = ref<any>() 
+let sku = ref<any>()
 
-
+// dialog的数据
+let dialogVisible = ref<boolean>(false)
+let skuList = ref<SkuData[]>([])
 
 
 // 获取spu数据请求
@@ -107,11 +131,11 @@ watch(()=>categoryStore.c3Id,()=>{
 
 
 
-
 // 添加SPU按钮回调（场景1）
 const addSpu = ()=>{
     // 更换场景
     scene.value = 1
+    spu.value.initAddSpu(categoryStore.c3Id)
 }
 // 自定义事件：changeScene
 const changeScene = (sceneValue:number)=>{
@@ -124,12 +148,49 @@ const changeScene = (sceneValue:number)=>{
 
 
 // 编辑SPU按钮回调（场景1）
-let spu = ref<any>() // 获取spuForm组件实例
+
 const editSpu=(row:SpuDataRecord)=>{
     scene.value = 1
     spu.value.initSpuData(row)
 }
 
+// 添加SKU按钮回调（场景2）
+const addSku = (row:SpuDataRecord)=>{
+    scene.value = 2
+    sku.value.initAddSku(row)
+}
+
+// 查看该SPU下所有SKU按钮回调
+const getSku = async(row:SpuDataRecord)=>{
+    let result:SkuDataResponse = await reqGetSkus((row.id as number))
+    if(result.code==200){
+        skuList.value = result.data
+        dialogVisible.value = true
+    }else{
+        ElMessage({
+            type:'error',
+            message:'获取失败！'
+        })
+    }
+}
+
+// 删除SPU按钮回调
+const deleteSpu = async(row:SpuDataRecord)=>{
+    let result:any = await reqDeleteSpu((row.id as number))
+    if(result.code == 200){
+        ElMessage({
+            type: 'success',
+            message: '删除成功！'
+        });
+        //获取剩余SPU数据
+        getSpu(pageNo.value)
+    }else{
+        ElMessage({
+            type:'error',
+            message:'删除失败！'
+        })
+    }
+}
 
 
 </script>

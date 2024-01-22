@@ -10,15 +10,14 @@ export interface ResponseData{
 
 
 
-
 // 定义GET_SPUDATA_URL数据类型
-// SPU展示图片数据类型
-export interface SpuImg{
-    id?:number, // id
-    imgName?:string, // 图片名
-    imgUrl?:string, // 图片URL
-    spuId?:number // 对应的SPUid
-}
+// // SPU展示图片数据类型
+// export interface SpuImg{
+//     id?:number, // id
+//     imgName?:string, // 图片名
+//     imgUrl?:string, // 图片URL
+//     spuId?:number // 对应的SPUid
+// }
 // SPU属性值数据类型
 export interface SpuAttrValue{
     id?:number, // id
@@ -28,14 +27,14 @@ export interface SpuAttrValue{
     saleAttrValueName:string, // 销售属性值名称
     isChecked?:boolean
 }
-// SPU属性数据类型
-export interface SpuAttr{
-    id?:number, // id
-    baseSaleAttrId:number|string, // 销售属性id
-    saleAttrName:string, // 销售属性名称
-    spuId?:number, // 对应的SPUid
-    spuSaleAttrValueList:SpuAttrValue[] // 对应的销售属性值列表
-}
+// // SPU属性数据类型
+// export interface SpuAttr{
+//     id?:number, // id
+//     baseSaleAttrId:number|string, // 销售属性id
+//     saleAttrName:string, // 销售属性名称
+//     spuId?:number, // 对应的SPUid
+//     spuSaleAttrValueList:SpuAttrValue[] // 对应的销售属性值列表
+// }
 // SPU数据类型
 export interface SpuDataRecord{
     id?:number|string, // id
@@ -43,8 +42,8 @@ export interface SpuDataRecord{
     description:string, // SPU描述
     category3Id:number|string, // 三级分类id 
     tmId:number|string, // 品牌id
-    spuSaleAttrList:null|SpuAttr[], // SPU销售属性列表
-    spuImageList:null|SpuImg[], // SPU展示图片列表
+    spuSaleAttrList:null|SpuAttrValueData[], // SPU销售属性列表
+    spuImageList:null|SpuImageData[], // SPU展示图片列表
 
 }
 export interface SpuDataResponse extends ResponseData{
@@ -79,10 +78,12 @@ export interface SpuTrademarksResponse extends ResponseData{
 
 // 定义GET_SPUIMAGES_URL数据类型
 export interface SpuImageData{
-    id: number,
-    spuId: number|string,
-    imgName:string,
-    imgUrl:string
+    id?: number,
+    spuId?: number|string,
+    imgName?:string,
+    imgUrl?:string,
+    name?:string,
+    url?:string
 }
 export interface SpuImagesResponse extends ResponseData{
     data:SpuImageData[]
@@ -108,12 +109,47 @@ export interface SpuAttrsResponse extends ResponseData{
 
 // 定义GET_SPUATTRVALUES_URL数据类型
 export interface SpuAttrValueData{
-    id: number,
+    id?: number,
     spuId: number,
     baseSaleAttrId: number,
     saleAttrName:string,
-    spuSaleAttrValueList: SpuAttrValue[]
+    spuSaleAttrValueList: SpuAttrValue[],
+    flag?:boolean,
+    saleAttrValue?:string
 }
 export interface SpuAttrValuesResponse extends ResponseData{
     data:SpuAttrValueData[]
+}
+
+
+
+
+
+
+
+// 定义ADD_SKU_URL数据类型
+export interface SkuData{
+    category3Id:number|string,
+    spuId:number|string,
+    tmId:number|string,
+    skuName?:string,
+    price?: number|string,
+    weight?: number|string,
+    skuDesc?: string,
+    skuAttrValueList:SkuPlatformAttr[],
+    skuSaleAttrValueList:SkuSaleAttr[],
+    skuDefaultImg:string
+}
+export interface SkuPlatformAttr{
+    attrId:number,
+    valueId:number,
+    attrIdAndValueId:string
+}
+export interface SkuSaleAttr{
+    saleAttrId:number,
+    saleAttrValueId:number,
+    attrIdAndValueId:string
+}
+export interface SkuDataResponse extends ResponseData{
+    data:SkuData[]
 }
